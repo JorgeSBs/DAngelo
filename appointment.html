@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Klinik - Clinic Website Template</title>
+    <title>Agendar Citas</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -100,7 +100,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
         <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>Klinik</h1>
+            <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>D´Angelo</h1>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -115,14 +115,14 @@
                     <div class="dropdown-menu rounded-0 rounded-bottom m-0">
                         <a href="feature.html" class="dropdown-item">Feature</a>
                         <a href="team.html" class="dropdown-item">Our Doctor</a>
-                        <a href="appointment.html" class="dropdown-item active">Appointment</a>
+                        <a href="calendar.html" class="dropdown-item active">Ver citas</a>
                         <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                        <a href="404.html" class="dropdown-item">404 Page</a>
+                        
                     </div>
                 </div>
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
-            <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Appointment<i
+            <a href="appointment.html" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Citas<i
                     class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
@@ -144,6 +144,26 @@
     </div>
     <!-- Page Header End -->
 
+    <!-- Contenedor para notificaciones -->
+<div class="notification-toast">
+    <div id="successToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="fas fa-check-circle me-2"></i>Cita agendada exitosamente
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+    
+    <div id="errorToast" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="fas fa-times-circle me-2"></i><span id="errorMessage"></span>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
 
     <!-- Appointment Start -->
     <div class="container-xxl py-5">
@@ -201,10 +221,10 @@
                                     </select>
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="date" id="date" class="form-control border-0" required>
+                                    <input type="date" id="date" class="form-control border-0" min="" required>
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="time" id="time" class="form-control border-0" required>
+                                    <input type="time" id="time" class="form-control border-0" min="08:00" max="21:00" required>
                                 </div>
                                 <div class="col-12">
                                     <textarea id="problem" class="form-control border-0" rows="5"
@@ -217,10 +237,48 @@
                         </form>
 
                         <script>
+                            // Configurar fecha mínima
+                            const today = new Date().toISOString().split('T')[0];
+                            document.getElementById("date").setAttribute('min', today);
+                
+                            // Validaciones de fecha y hora
+                            function validateDateTime(selectedDate, selectedTime) {
+                                const now = new Date();
+                                const selectedDateTime = new Date(`${selectedDate}T${selectedTime}`);
+                                
+                                // Validar fecha pasada
+                                if (selectedDateTime < now) {
+                                    showError('No se pueden agendar citas en fechas pasadas');
+                                    return false;
+                                }
+                                
+                                // Validar horario
+                                const hours = selectedDateTime.getHours();
+                                if (hours < 8 || hours >= 21) {
+                                    showError('Horario no válido (8:00 AM - 9:00 PM)');
+                                    return false;
+                                }
+                                
+                                return true;
+                            }
+                
+                            // Mostrar notificaciones
+                            function showSuccess() {
+                                const toast = new bootstrap.Toast(document.getElementById('successToast'));
+                                toast.show();
+                            }
+                
+                            function showError(message) {
+                                document.getElementById('errorMessage').textContent = message;
+                                const toast = new bootstrap.Toast(document.getElementById('errorToast'));
+                                toast.show();
+                            }
+                
+                            // Envío del formulario
                             document.getElementById("appointmentForm").addEventListener("submit", function (e) {
                                 e.preventDefault();
-
-                                let appointment = {
+                
+                                const appointment = {
                                     name: document.getElementById("name").value,
                                     email: document.getElementById("email").value,
                                     phone: document.getElementById("phone").value,
@@ -229,16 +287,30 @@
                                     time: document.getElementById("time").value,
                                     problem: document.getElementById("problem").value
                                 };
-
-                                // Guardar en Firebase
+                
+                                if (!validateDateTime(appointment.date, appointment.time)) return;
+                
                                 firebase.database().ref("appointments").push(appointment)
                                     .then(() => {
-                                        alert("Cita agendada con éxito.");
+                                        showSuccess();
                                         document.getElementById("appointmentForm").reset();
                                     })
                                     .catch(error => {
-                                        console.error("Error al guardar la cita:", error);
+                                        showError('Error al guardar la cita: ' + error.message);
                                     });
+                            });
+                
+                            // Validación en tiempo real del horario
+                            document.getElementById("time").addEventListener('change', function() {
+                                const selectedTime = this.value;
+                                const [hours, minutes] = selectedTime.split(':');
+                                
+                                if (parseInt(hours) < 8 || parseInt(hours) >= 21) {
+                                    this.setCustomValidity('Horario no válido');
+                                    showError('Solo se permiten citas entre 8:00 AM y 9:00 PM');
+                                } else {
+                                    this.setCustomValidity('');
+                                }
                             });
                         </script>
 
