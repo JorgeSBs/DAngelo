@@ -1,0 +1,21 @@
+{
+    "short_name": "PWA D´angelo",
+    "name": "PWA D´angelo",
+    "description": "Clinica Nutricional",
+    "icons": [
+      {
+        "src": "/img/logo2.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/img/logo1.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#000000"
+  }
