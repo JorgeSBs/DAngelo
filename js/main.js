@@ -26,7 +26,7 @@
     });
     
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('DAngelo/sw.js')
           .then((registration) => {
             console.log('Service Worker registrado con éxito:', registration);
           })
@@ -38,7 +38,7 @@
       let deferredPrompt;
 
       if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js', { scope: '/' }) // Ruta absoluta
+  navigator.serviceWorker.register('DAngelo/sw.js', { scope: '/' }) // Ruta absoluta
     .then(() => console.log('SW registrado'))
     .catch(err => console.error('Error en SW:', err));
 }
