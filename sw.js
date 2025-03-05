@@ -67,11 +67,17 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        return response || fetch(event.request);
+        return response || fetch(event.request)
+          .then(networkResponse => {
+            const clonedResponse = networkResponse.clone();
+            caches.open(CACHE_NAME)
+              .then(cache => cache.put(event.request, clonedResponse));
+            return networkResponse;
+          })
+          .catch(() => caches.match('/404.html')); // Offline fallback
       })
   );
 });
-
 // Limpieza de cachés antiguas
 self.addEventListener('activate', (event) => {
   event.waitUntil(
