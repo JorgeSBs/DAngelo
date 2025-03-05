@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v2'; // ¡Cambia la versión!
 const CACHE_NAME = `${CACHE_VERSION}-clinic-cache`;
 const ASSETS = [
   // HTML
@@ -11,15 +11,14 @@ const ASSETS = [
   '/service.html',
   '/team.html',
   '/testimonial.html',
-  '/404.html',
 
   // CSS
   '/css/bootstrap.min.css',
   '/css/style.css',
-  
+  '/lib/animate/animate.min.css', // Asegúrate de que exista
+
   // JS
   '/js/main.js',
-  '/lib/animate/animate.min.css',
   '/lib/counterup/counterup.min.js',
   '/lib/easing/easing.min.js',
   '/lib/owlcarousel/owl.carousel.min.js',
@@ -27,10 +26,11 @@ const ASSETS = [
   '/lib/waypoints/waypoints.min.js',
   '/lib/wow/wow.min.js',
 
-  // Imágenes
+  // Imágenes (verifica rutas)
   '/img/logo1.jpg',
   '/img/logo2.jpg',
-  '/img/about-1.jpg',
+  // ... resto de imágenes
+  /img/about-1.jpg',
   '/img/about-2.jpg',
   '/img/carousel-1.jpg',
   '/img/carousel-2.jpg',
@@ -44,51 +44,30 @@ const ASSETS = [
   '/img/testimonial-1.jpg',
   '/img/testimonial-2.jpg',
   '/img/testimonial-3.jpg',
+//  '/img/log.png',
+ // '/img/Register.png',
 
-  // Manifest y otros
-  '/manifest.json',
+  // Manifest
+  '/manifest.json'
   '/clinic-website-template.jpg'
 ];
 
-// Instalación
+// Instalación con debug
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
-        return cache.addAll(ASSETS).catch(error => {
-          console.error('Error al cachear:', error);
-        });
-      })
-  );
-});
-
-// Fetch de recursos
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        return response || fetch(event.request)
-          .then(networkResponse => {
-            const clonedResponse = networkResponse.clone();
-            caches.open(CACHE_NAME)
-              .then(cache => cache.put(event.request, clonedResponse));
-            return networkResponse;
+        return Promise.all(
+          ASSETS.map(asset => {
+            return cache.add(asset).catch(error => {
+              console.error(`Fallo en ${asset}:`, error);
+              throw error;
+            });
           })
-          .catch(() => caches.match('/404.html')); // Offline fallback
+        );
       })
-  );
-});
-// Limpieza de cachés antiguas
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME && cacheName.startsWith('v')) { // Filtra por prefijo
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
+      .catch(error => {
+        console.error('Error durante la instalación:', error);
+      })
   );
 });
