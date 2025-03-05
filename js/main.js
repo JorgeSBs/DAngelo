@@ -26,7 +26,7 @@
     });
     
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('https://github.com/JorgeSBs/DAngelo/sw.js')
+        navigator.serviceWorker.register('/sw.js')
           .then((registration) => {
             console.log('Service Worker registrado con éxito:', registration);
           })
@@ -38,12 +38,10 @@
       let deferredPrompt;
 
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('https://github.com/JorgeSBs/DAngelo/sw.js')
-            .then(registration => console.log('SW registrado'))
-            .catch(error => console.log('Error SW:', error));
-        });
-      }
+  navigator.serviceWorker.register('/sw.js', { scope: '/' }) // Ruta absoluta
+    .then(() => console.log('SW registrado'))
+    .catch(err => console.error('Error en SW:', err));
+}
 
       
 
