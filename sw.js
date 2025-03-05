@@ -30,7 +30,7 @@ const ASSETS = [
   '/img/logo1.jpg',
   '/img/logo2.jpg',
   // ... resto de imágenes
-  /img/about-1.jpg',
+  '/img/about-1.jpg',
   '/img/about-2.jpg',
   '/img/carousel-1.jpg',
   '/img/carousel-2.jpg',
