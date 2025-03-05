@@ -39,7 +39,7 @@
 
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./sw.js')
+          navigator.serviceWorker.register('https://github.com/JorgeSBs/DAngelo/sw.js')
             .then(registration => console.log('SW registrado'))
             .catch(error => console.log('Error SW:', error));
         });
