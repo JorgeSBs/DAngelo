@@ -26,7 +26,7 @@
     });
     
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('https://github.com/JorgeSBs/DAngelo/sw.js')
           .then((registration) => {
             console.log('Service Worker registrado con éxito:', registration);
           })
