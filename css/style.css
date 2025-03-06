@@ -675,3 +675,13 @@
 .fc .fc-view-harness {
     min-height: 400px;
 }
+
+.navbar .dropdown-toggle::after {
+    vertical-align: middle;
+}
+
+#navProfilePhoto {
+    margin-right: 8px;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
