@@ -26,22 +26,24 @@
     });
     
     if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-      .then(function(registration) {
-        console.log('Service Worker registrado con éxito:', registration);
-      })
-      .catch(function(error) {
-        console.log('Error al registrar el Service Worker:', error);
-      });
-    }
+        navigator.serviceWorker.register('/sw.js')
+          .then((registration) => {
+            console.log('Service Worker registrado con éxito:', registration);
+          })
+          .catch((error) => {
+            console.log('Error al registrar el Service Worker:', error);
+          });
+      }
 
       let deferredPrompt;
 
       if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/DAngelo/sw.js', { scope: '/' }) // Ruta corregida
-    .then(() => console.log('SW registrado correctamente'))
-    .catch(err => console.error('Error al registrar SW:', err));
-}
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+            .then(registration => console.log('SW registrado'))
+            .catch(error => console.log('Error SW:', error));
+        });
+      }
 
       
 
