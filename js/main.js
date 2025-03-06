@@ -38,7 +38,7 @@
       let deferredPrompt;
 
       if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/DAngelo/sw.js', { scope: '/DAngelo/' }) // Ruta corregida
+  navigator.serviceWorker.register('/DAngelo/sw.js', { scope: '/' }) // Ruta corregida
     .then(() => console.log('SW registrado correctamente'))
     .catch(err => console.error('Error al registrar SW:', err));
 }
