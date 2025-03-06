@@ -14,7 +14,9 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
+        rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -34,8 +36,29 @@
 </head>
 
 <body>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+
+    <!-- Configuración Firebase -->
+    <script>
+        // Configuración de tu proyecto Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDtDX0Upgn6eUWP6PWqACduw0UJSpQ7cYc",
+            authDomain: "evalucacion-fb656.firebaseapp.com",
+            databaseURL: "https://evalucacion-fb656-default-rtdb.firebaseio.com",
+            projectId: "evalucacion-fb656",
+            storageBucket: "evalucacion-fb656.appspot.com",
+            messagingSenderId: "446865801864",
+            appId: "1:446865801864:web:b51d561c84c62cb4a7553d"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Cargando...</span>
         </div>
@@ -62,10 +85,14 @@
                     <small>+52 55 35-54-74-50</small>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center">
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href=""><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i
+                            class="fab fa-twitter"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href=""><i
+                            class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
@@ -83,24 +110,36 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link active">Inicio</a>
-                <a href="about.html" class="nav-item nav-link">Acerca de</a>
-                <a href="service.html" class="nav-item nav-link">Servicios</a>
+                <a href="indexusuario.html" class="nav-item nav-link active">Inicio</a>
+                <a href="aboutusuario.html" class="nav-item nav-link">Acerca de</a>
+                <a href="serviceusuario.html" class="nav-item nav-link">Servicios</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mas</a>
                     <div class="dropdown-menu rounded-0 rounded-bottom m-0">
-                        <a href="feature.html" class="dropdown-item">Caracteristicas</a>
-                        <a href="team.html" class="dropdown-item">Nuestros especialistas</a>
-                        <a href="testimonial.html" class="dropdown-item">Testiomonos</a>
-                        
+                        <a href="featureusuario.html" class="dropdown-item">Caracteristicas</a>
+                        <a href="teamusuario.html" class="dropdown-item">Nuestros especialistas</a>
+                        <a href="calendar.html" class="dropdown-item">Ver citas</a>
+                        <a href="testimonialusuario.html" class="dropdown-item">Testiomonos</a>
+
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contacto</a>
-                <a href="login.html " class="nav-item nav-link">Iniciar Sesion</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="userMenu">
+                        <img src="img/user.jpg" id="navProfilePhoto" 
+                             class="rounded-circle me-2" 
+                             style="width: 30px; height: 30px; object-fit: cover;">
+                        <span id="userName">Usuario</span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">Perfil</a>
+                        <a class="dropdown-item" href="#" onclick="logout()">Cerrar sesión</a>
+                    </div>
+                </div>
+                <a href="contactusuario.html" class="nav-item nav-link">Contacto</a>
                 <button id="installButton" class="install-btn">Instalar App</button>
             </div>
-            
-            <a href="appointment.html" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Cita<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="appointmentusuario.html" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Cita<i
+                    class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -137,19 +176,19 @@
                     <div class="owl-carousel-item position-relative">
                         <img class="img-fluid" src="img/carousel-1.jpg" alt="">
                         <div class="owl-carousel-text">
-                            <h1 class="display-1 text-white mb-0">Nutricion</h1>
+                            <h1 class="display-1 text-white mb-0">Cardiology</h1>
                         </div>
                     </div>
                     <div class="owl-carousel-item position-relative">
                         <img class="img-fluid" src="img/carousel-2.jpg" alt="">
                         <div class="owl-carousel-text">
-                            <h1 class="display-1 text-white mb-0">Seguimiento y control</h1>
+                            <h1 class="display-1 text-white mb-0">Neurology</h1>
                         </div>
                     </div>
                     <div class="owl-carousel-item position-relative">
                         <img class="img-fluid" src="img/carousel-3.jpg" alt="">
                         <div class="owl-carousel-text">
-                            <h1 class="display-1 text-white mb-0">Citas</h1>
+                            <h1 class="display-1 text-white mb-0">Pulmonary</h1>
                         </div>
                     </div>
                 </div>
@@ -166,17 +205,21 @@
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <div class="d-flex flex-column">
                         <img class="img-fluid rounded w-75 align-self-end" src="img/about-1.jpg" alt="">
-                        <img class="img-fluid rounded w-50 bg-white pt-3 pe-3" src="img/about-2.jpg" alt="" style="margin-top: -25%;">
+                        <img class="img-fluid rounded w-50 bg-white pt-3 pe-3" src="img/about-2.jpg" alt=""
+                            style="margin-top: -25%;">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <p class="d-inline-block border rounded-pill py-1 px-4">Sobre nosotros</p>
                     <h1 class="mb-4">Why You Should Trust Us? Get Know About Us!</h1>
-                    <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                    <p class="mb-4">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam rebum amet diam ipsum. Clita clita labore, dolor duo nonumy clita sit at, sed sit sanctus dolor eos.</p>
-                    <p><i class="far fa-check-circle text-primary me-3"></i>Atencion de calidad</p>
-                    <p><i class="far fa-check-circle text-primary me-3"></i>Nutriologos calificados</p>
-                    <p><i class="far fa-check-circle text-primary me-3"></i>Profesionales de nutricion</p>
+                    <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita
+                        erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                    <p class="mb-4">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam rebum
+                        amet diam ipsum. Clita clita labore, dolor duo nonumy clita sit at, sed sit sanctus dolor eos.
+                    </p>
+                    <p><i class="far fa-check-circle text-primary me-3"></i>Quality health care</p>
+                    <p><i class="far fa-check-circle text-primary me-3"></i>Only Qualified Doctors</p>
+                    <p><i class="far fa-check-circle text-primary me-3"></i>Medical Research Professionals</p>
                     <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" href="">Read More</a>
                 </div>
             </div>
@@ -189,67 +232,79 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <p class="d-inline-block border rounded-pill py-1 px-4">Servicios</p>
-                <h1>Soluciones para la salud</h1>
+                <p class="d-inline-block border rounded-pill py-1 px-4">Services</p>
+                <h1>Health Care Solutions</h1>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
                             <i class="fa fa-heartbeat text-primary fs-4"></i>
                         </div>
-                        <h4 class="mb-3">Dietas</h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                        <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Leer mas</a>
+                        <h4 class="mb-3">Cardiology</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
+                            diam sed stet.</p>
+                        <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
                             <i class="fa fa-x-ray text-primary fs-4"></i>
                         </div>
-                        <h4 class="mb-3">Analisis nutricional</h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                        <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Leer mas</a>
+                        <h4 class="mb-3">Pulmonary</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
+                            diam sed stet.</p>
+                        <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
                             <i class="fa fa-brain text-primary fs-4"></i>
                         </div>
-                        <h4 class="mb-3">Recomendaciones</h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <h4 class="mb-3">Neurology</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
+                            diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
                             <i class="fa fa-wheelchair text-primary fs-4"></i>
                         </div>
-                        <h4 class="mb-3">Diseño plan educacional</h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <h4 class="mb-3">Orthopedics</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
+                            diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
                             <i class="fa fa-tooth text-primary fs-4"></i>
                         </div>
-                        <h4 class="mb-3">Suplementos</h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <h4 class="mb-3">Dental Surgery</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
+                            diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item bg-light rounded h-100 p-5">
-                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                            style="width: 65px; height: 65px;">
                             <i class="fa fa-vials text-primary fs-4"></i>
                         </div>
-                        <h4 class="mb-3"></h4>
-                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                        <h4 class="mb-3">Laboratory</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet
+                            diam sed stet.</p>
                         <a class="btn" href=""><i class="fa fa-plus text-primary me-3"></i>Read More</a>
                     </div>
                 </div>
@@ -265,35 +320,40 @@
             <div class="row g-0 mx-lg-0">
                 <div class="col-lg-6 feature-text py-5 wow fadeIn" data-wow-delay="0.1s">
                     <div class="p-lg-5 ps-lg-0">
-                        <p class="d-inline-block border rounded-pill text-light py-1 px-4">Caracteristicas</p>
+                        <p class="d-inline-block border rounded-pill text-light py-1 px-4">Features</p>
                         <h1 class="text-white mb-4">Why Choose Us</h1>
-                        <p class="text-white mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo erat amet</p>
+                        <p class="text-white mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
+                            Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo
+                            justo erat amet</p>
                         <div class="row g-4">
                             <div class="col-6">
                                 <div class="d-flex align-items-center">
-                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light" style="width: 55px; height: 55px;">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light"
+                                        style="width: 55px; height: 55px;">
                                         <i class="fa fa-user-md text-primary"></i>
                                     </div>
                                     <div class="ms-4">
-                                        <p class="text-white mb-2">Experiecia</p>
-                                        <h5 class="text-white mb-0">Nutriologos</h5>
+                                        <p class="text-white mb-2">Experience</p>
+                                        <h5 class="text-white mb-0">Doctors</h5>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="d-flex align-items-center">
-                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light" style="width: 55px; height: 55px;">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light"
+                                        style="width: 55px; height: 55px;">
                                         <i class="fa fa-check text-primary"></i>
                                     </div>
                                     <div class="ms-4">
-                                        <p class="text-white mb-2">Calidad</p>
-                                        <h5 class="text-white mb-0">Servicios</h5>
+                                        <p class="text-white mb-2">Quality</p>
+                                        <h5 class="text-white mb-0">Services</h5>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="d-flex align-items-center">
-                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light" style="width: 55px; height: 55px;">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light"
+                                        style="width: 55px; height: 55px;">
                                         <i class="fa fa-comment-medical text-primary"></i>
                                     </div>
                                     <div class="ms-4">
@@ -304,7 +364,8 @@
                             </div>
                             <div class="col-6">
                                 <div class="d-flex align-items-center">
-                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light" style="width: 55px; height: 55px;">
+                                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-light"
+                                        style="width: 55px; height: 55px;">
                                         <i class="fa fa-headphones text-primary"></i>
                                     </div>
                                     <div class="ms-4">
@@ -318,7 +379,8 @@
                 </div>
                 <div class="col-lg-6 pe-lg-0 wow fadeIn" data-wow-delay="0.5s" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute img-fluid w-100 h-100" src="img/feature.jpg" style="object-fit: cover;" alt="">
+                        <img class="position-absolute img-fluid w-100 h-100" src="img/feature.jpg"
+                            style="object-fit: cover;" alt="">
                     </div>
                 </div>
             </div>
@@ -331,8 +393,8 @@
     <div class="container-xxl py-5">
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <p class="d-inline-block border rounded-pill py-1 px-4">Nutriologos</p>
-                <h1>Nuestros Doctores con Experiencia</h1>
+                <p class="d-inline-block border rounded-pill py-1 px-4">Doctors</p>
+                <h1>Our Experience Doctors</h1>
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -341,7 +403,7 @@
                             <img class="img-fluid" src="img/team-1.jpg" alt="">
                         </div>
                         <div class="team-text bg-light text-center p-4">
-                            <h5>Nombre nutricionista</h5>
+                            <h5>Doctor Name</h5>
                             <p class="text-primary">Department</p>
                             <div class="team-social text-center">
                                 <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
@@ -357,7 +419,7 @@
                             <img class="img-fluid" src="img/team-2.jpg" alt="">
                         </div>
                         <div class="team-text bg-light text-center p-4">
-                            <h5>Nombre nutricionista</h5>
+                            <h5>Doctor Name</h5>
                             <p class="text-primary">Department</p>
                             <div class="team-social text-center">
                                 <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
@@ -373,7 +435,7 @@
                             <img class="img-fluid" src="img/team-3.jpg" alt="">
                         </div>
                         <div class="team-text bg-light text-center p-4">
-                            <h5>Nombre nutricionista</h5>
+                            <h5>Doctor Name</h5>
                             <p class="text-primary">Department</p>
                             <div class="team-social text-center">
                                 <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
@@ -389,7 +451,7 @@
                             <img class="img-fluid" src="img/team-4.jpg" alt="">
                         </div>
                         <div class="team-text bg-light text-center p-4">
-                            <h5>Nombre nutricionista</h5>
+                            <h5>Doctor Name</h5>
                             <p class="text-primary">Department</p>
                             <div class="team-social text-center">
                                 <a class="btn btn-square" href=""><i class="fab fa-facebook-f"></i></a>
@@ -410,11 +472,14 @@
         <div class="container">
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <p class="d-inline-block border rounded-pill py-1 px-4">Cita</p>
+                    <p class="d-inline-block border rounded-pill py-1 px-4">Appointment</p>
                     <h1 class="mb-4">Make An Appointment To Visit Our Doctor</h1>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
+                        eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
+                    </p>
                     <div class="bg-light rounded d-flex align-items-center p-5 mb-4">
-                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
+                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white"
+                            style="width: 55px; height: 55px;">
                             <i class="fa fa-phone-alt text-primary"></i>
                         </div>
                         <div class="ms-4">
@@ -423,7 +488,8 @@
                         </div>
                     </div>
                     <div class="bg-light rounded d-flex align-items-center p-5">
-                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white" style="width: 55px; height: 55px;">
+                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center rounded-circle bg-white"
+                            style="width: 55px; height: 55px;">
                             <i class="fa fa-envelope-open text-primary"></i>
                         </div>
                         <div class="ms-4">
@@ -437,13 +503,16 @@
                         <form>
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Your Name" style="height: 55px;">
+                                    <input type="text" class="form-control border-0" placeholder="Your Name"
+                                        style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
+                                    <input type="email" class="form-control border-0" placeholder="Your Email"
+                                        style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Your Mobile" style="height: 55px;">
+                                    <input type="text" class="form-control border-0" placeholder="Your Mobile"
+                                        style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <select class="form-select border-0" style="height: 55px;">
@@ -455,20 +524,21 @@
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="date" id="date" data-target-input="nearest">
-                                        <input type="text"
-                                            class="form-control border-0 datetimepicker-input"
-                                            placeholder="Choose Date" data-target="#date" data-toggle="datetimepicker" style="height: 55px;">
+                                        <input type="text" class="form-control border-0 datetimepicker-input"
+                                            placeholder="Choose Date" data-target="#date" data-toggle="datetimepicker"
+                                            style="height: 55px;">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="time" id="time" data-target-input="nearest">
-                                        <input type="text"
-                                            class="form-control border-0 datetimepicker-input"
-                                            placeholder="Choose Date" data-target="#time" data-toggle="datetimepicker" style="height: 55px;">
+                                        <input type="text" class="form-control border-0 datetimepicker-input"
+                                            placeholder="Choose Date" data-target="#time" data-toggle="datetimepicker"
+                                            style="height: 55px;">
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <textarea class="form-control border-0" rows="5" placeholder="Describe your problem"></textarea>
+                                    <textarea class="form-control border-0" rows="5"
+                                        placeholder="Describe your problem"></textarea>
                                 </div>
                                 <div class="col-12">
                                     <button class="btn btn-primary w-100 py-3" type="submit">Book Appointment</button>
@@ -492,25 +562,34 @@
             </div>
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                 <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-1.jpg" style="width: 100px; height: 100px;">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-1.jpg"
+                        style="width: 100px; height: 100px;">
                     <div class="testimonial-text rounded text-center p-4">
-                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
+                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna
+                            ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea
+                            clita.</p>
                         <h5 class="mb-1">Patient Name</h5>
                         <span class="fst-italic">Profession</span>
                     </div>
                 </div>
                 <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-2.jpg" style="width: 100px; height: 100px;">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-2.jpg"
+                        style="width: 100px; height: 100px;">
                     <div class="testimonial-text rounded text-center p-4">
-                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
+                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna
+                            ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea
+                            clita.</p>
                         <h5 class="mb-1">Patient Name</h5>
                         <span class="fst-italic">Profession</span>
                     </div>
                 </div>
                 <div class="testimonial-item text-center">
-                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-3.jpg" style="width: 100px; height: 100px;">
+                    <img class="img-fluid bg-light rounded-circle p-2 mx-auto mb-4" src="img/testimonial-3.jpg"
+                        style="width: 100px; height: 100px;">
                     <div class="testimonial-text rounded text-center p-4">
-                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea clita.</p>
+                        <p>Clita clita tempor justo dolor ipsum amet kasd amet duo justo duo duo labore sed sed. Magna
+                            ut diam sit et amet stet eos sed clita erat magna elitr erat sit sit erat at rebum justo sea
+                            clita.</p>
                         <h5 class="mb-1">Patient Name</h5>
                         <span class="fst-italic">Profession</span>
                     </div>
@@ -526,24 +605,28 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="text-light mb-4">Direccion</h5>
+                    <h5 class="text-light mb-4">Address</h5>
                     <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+52 55-35-54-74-50</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i
+                                class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i
+                                class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social rounded-circle" href=""><i
+                                class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="text-light mb-4">Servicios</h5>
-                    <a class="btn btn-link" href="">Dietas</a>
-                    <a class="btn btn-link" href="">Analisis nutricional</a>
-                    <a class="btn btn-link" href="">Recomendaciones</a>
-                    <a class="btn btn-link" href="">Diseño de plan educativo</a>
-                    <a class="btn btn-link" href="">Suplementos</a>
+                    <h5 class="text-light mb-4">Services</h5>
+                    <a class="btn btn-link" href="">Cardiology</a>
+                    <a class="btn btn-link" href="">Pulmonary</a>
+                    <a class="btn btn-link" href="">Neurology</a>
+                    <a class="btn btn-link" href="">Orthopedics</a>
+                    <a class="btn btn-link" href="">Laboratory</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-light mb-4">Quick Links</h5>
@@ -558,7 +641,8 @@
                     <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
                         <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                        <button type="button"
+                            class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
                     </div>
                 </div>
             </div>
@@ -567,7 +651,7 @@
             <div class="copyright">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">D´Angelo</a>, Todos los derechos reservados.
+                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
                     </div>
                     <div class="col-md-6 text-center text-md-end">
                         <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
@@ -581,7 +665,8 @@
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
+            class="bi bi-arrow-up"></i></a>
 
 
     <!-- JavaScript Libraries -->
@@ -598,6 +683,50 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+        // Agrega este código antes del cierre del body
+        document.addEventListener('DOMContentLoaded', function () {
+            // Inicializar Firebase Auth
+            const auth = firebase.auth();
+
+            // Observar cambios en la autenticación
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    // Actualizar datos del navbar
+                    const userNameElement = document.getElementById('userName');
+                    const profilePhotoElement = document.getElementById('navProfilePhoto');
+
+                    // Mostrar nombre o email
+                    userNameElement.textContent = user.displayName || user.email;
+
+                    // Mostrar foto de perfil si existe
+                    if (user.photoURL) {
+                        profilePhotoElement.src = user.photoURL;
+                    }
+
+                    // Si usas Firestore para datos adicionales
+                    firebase.firestore().collection('users').doc(user.uid).get()
+                        .then(doc => {
+                            if (doc.exists) {
+                                const userData = doc.data();
+                                // Actualizar con datos adicionales
+                                userNameElement.textContent = userData.displayName || user.email;
+                            }
+                        });
+                } else {
+                    window.location.href = 'login.html';
+                }
+            });
+
+            // Función para cerrar sesión
+            window.logout = function () {
+                auth.signOut().then(() => {
+                    window.location.href = 'login.html';
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

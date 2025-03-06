@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Mantener mismos metadatos y enlaces del head original -->
+    <meta charset="utf-8">
+    <title>Iniciar Sesion</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script>
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCfLAe5np-WnTWPfeRLb4uxUA3o054O9z0",
+            authDomain: "serranobrisenojorge.firebaseapp.com",
+            databaseURL: "https://serranobrisenojorge-default-rtdb.firebaseio.com",
+            projectId: "serranobrisenojorge",
+            storageBucket: "serranobrisenojorge.appspot.com",
+            messagingSenderId: "102606222700",
+            appId: "1:102606222700:web:532e685002b4ef4219ef49"
+        };
+
+        // Inicializar Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+    </script>
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)),
+                url('img/medical-bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .auth-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth-divider {
+            position: relative;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .auth-divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            border-top: 1px solid #dee2e6;
+            z-index: 1;
+        }
+
+        .auth-divider span {
+            position: relative;
+            z-index: 2;
+            background: white;
+            padding: 0 1rem;
+        }
+
+        .google-btn {
+            background: #dd4b39 !important;
+            color: white !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .google-btn:hover {
+            background: #c23321 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light p-0 wow fadeIn" data-wow-delay="0.1s">
+        <div class="row gx-0 d-none d-lg-flex">
+            <div class="col-lg-7 px-5 text-start">
+                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                    <small class="fa fa-map-marker-alt text-primary me-2"></small>
+                    <small>123 Street, New York, USA</small>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center py-3">
+                    <small class="far fa-clock text-primary me-2"></small>
+                    <small>Lunes a Domingo : 08.00 AM - 09.00 PM</small>
+                </div>
+            </div>
+            <div class="col-lg-5 px-5 text-end">
+                <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                    <small class="fa fa-phone-alt text-primary me-2"></small>
+                    <small>+52 55 35-54-74-50</small>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center">
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i
+                            class="fab fa-twitter"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-1" href=""><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-sm-square rounded-circle bg-white text-primary me-0" href=""><i
+                            class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
+        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <h1 class="m-0 text-primary"><i class="far fa-hospital me-3"></i>D´angelo</h1>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link active">Inicio</a>
+                <a href="about.html" class="nav-item nav-link">Acerca de</a>
+                <a href="service.html" class="nav-item nav-link">Servicios</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mas</a>
+                    <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                        <a href="feature.html" class="dropdown-item">Caracteristicas</a>
+                        <a href="team.html" class="dropdown-item">Nuestros especialistas</a>
+                        <a href="calendar.html" class="dropdown-item">Ver citas</a>
+                        <a href="testimonial.html" class="dropdown-item">Testiomonos</a>
+
+                    </div>
+                </div>
+                <a href="contact.html" class="nav-item nav-link">Contacto</a>
+                <button id="installButton" class="install-btn">Instalar App</button>
+            </div>
+            <a href="appointment.html" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">Cita<i
+                    class="fa fa-arrow-right ms-3"></i></a>
+        </div>
+    </nav>
+
+    <!-- Login Container -->
+    <div class="container-fluid auth-container">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="auth-card p-5 wow fadeInUp" data-wow-delay="0.1s">
+                        <h2 class="text-center mb-4">Registro Médico</h2>
+
+                        <form id="registerForm">
+                            <div class="mb-3">
+                                <input type="email" class="form-control border-0 py-3" id="registerEmail"
+                                    placeholder="Correo electrónico" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" class="form-control border-0 py-3" id="registerPassword"
+                                    placeholder="Contraseña" required>
+                            </div>
+                            <div class="mb-4">
+                                <input type="password" class="form-control border-0 py-3" id="registerConfirmPassword"
+                                    placeholder="Confirmar contraseña" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 py-3">Registrarse</button>
+                        </form>
+
+                        <div class="auth-divider">
+                            <span class="text-muted">O continuar con</span>
+                        </div>
+
+                        <!-- Botón Google -->
+                        <button class="btn google-btn w-100 py-3" id="googleLogin">
+                            <i class="fab fa-google me-2"></i> Google
+                        </button>
+
+                        <div class="text-center mt-4">
+                            <p class="mb-0">¿No tienes cuenta?
+                                <a href="register.html" class="text-primary">Regístrate aquí</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Script de registro
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+
+            if (password !== confirmPassword) {
+                showError('Las contraseñas no coinciden');
+                return;
+            }
+
+            auth.createUserWithEmailAndPassword(email, password)
+                .then(() => {
+                    window.location.href = 'appointment.html';
+                })
+                .catch(error => {
+                    showError(error.message);
+                });
+        });
+    </script>
+</body>
+
+</html>

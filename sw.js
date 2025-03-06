@@ -1,60 +1,72 @@
-const CACHE_VERSION = 'v2';
-const CACHE_NAME = `${CACHE_VERSION}-dangelo-cache`;
+const CACHE_VERSION = 'v1';
+const CACHE_NAME = `${CACHE_VERSION}-clinic-cache`;
 const ASSETS = [
   // HTML
-  '/DAngelo/',
-  '/DAngelo/index.html',
-  '/DAngelo/about.html',
-  '/DAngelo/appointment.html',
-  '/DAngelo/contact.html',
-  '/DAngelo/feature.html',
-  '/DAngelo/service.html',
-  '/DAngelo/team.html',
-  '/DAngelo/testimonial.html',
+  './',
+  './index.html',
+  './about.html',
+  './aboutusuario.html',
+  './appointment.html',
+  './appointmentusuario.html',
+  './contact.html',
+  './contactusuario.html',
+  './featureusuario.html',
+  './feature.html',
+  './service.html',
+  './serviceusuario.html',
+  './team.html',
+  './teamusuario.html',
+  './testimonial.html',
+  './testimonialusuario.html',
+  './404.html',
 
   // CSS
-  '/DAngelo/css/bootstrap.min.css',
-  '/DAngelo/css/style.css',
-  '/DAngelo/lib/animate/animate.min.css',
-
+  './css/bootstrap.min.css',
+  './css/style.css',
+  
   // JS
-  '/DAngelo/js/main.js',
-  '/DAngelo/lib/counterup/counterup.min.js',
-  '/DAngelo/lib/easing/easing.min.js',
-  '/DAngelo/lib/owlcarousel/owl.carousel.min.js',
-  '/DAngelo/lib/tempusdominus/js/tempusdominus-bootstrap-4.js',
-  '/DAngelo/lib/waypoints/waypoints.min.js',
-  '/DAngelo/lib/wow/wow.min.js',
+  './js/main.js',
+  './lib/animate/animate.min.css',
+  './lib/counterup/counterup.min.js',
+  './lib/easing/easing.min.js',
+  './lib/owlcarousel/owl.carousel.min.js',
+  './lib/tempusdominus/js/tempusdominus-bootstrap-4.js',
+  './lib/waypoints/waypoints.min.js',
+  './lib/wow/wow.min.js',
 
   // Imágenes
-  '/DAngelo/img/logo1.jpg',
-  '/DAngelo/img/logo2.jpg',
-  '/DAngelo/img/about-1.jpg',
-  '/DAngelo/img/about-2.jpg',
-  '/DAngelo/img/carousel-1.jpg',
-  '/DAngelo/img/carousel-2.jpg',
-  '/DAngelo/img/carousel-3.jpg',
-  '/DAngelo/img/feature.jpg',
-  '/DAngelo/img/header-page.jpg',
-  '/DAngelo/img/team-1.jpg',
-  '/DAngelo/img/team-2.jpg',
-  '/DAngelo/img/team-3.jpg',
-  '/DAngelo/img/team-4.jpg',
-  '/DAngelo/img/testimonial-1.jpg',
-  '/DAngelo/img/testimonial-2.jpg',
-  '/DAngelo/img/testimonial-3.jpg',
+  './img/logo1.jpg',
+  './img/logo2.jpg',
+  './img/about-1.jpg',
+  './img/about-2.jpg',
+  './img/carousel-1.jpg',
+  './img/carousel-2.jpg',
+  './img/carousel-3.jpg',
+  './img/feature.jpg',
+  './img/header-page.jpg',
+  './img/team-1.jpg',
+  './img/team-2.jpg',
+  './img/team-3.jpg',
+  './img/team-4.jpg',
+  './img/testimonial-1.jpg',
+  './img/testimonial-2.jpg',
+  './img/testimonial-3.jpg',
+  './img/log.png',
+  './img/Register.png',
 
-  // Manifest e ícono
-  '/DAngelo/manifest.json',
-  '/DAngelo/img/icon-192x192.png',
-  '/DAngelo/img/icon-512x512.png'
+  // Manifest y otros
+  './manifest.json',
 ];
 
-// Instalar Service Worker
+// Instalación
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(ASSETS))
+      .then(cache => {
+        return cache.addAll(ASSETS).catch(error => {
+          console.error('Error al cachear:', error);
+        });
+      })
   );
 });
 
@@ -62,6 +74,23 @@ self.addEventListener('install', (event) => {
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)
-      .then(response => response || fetch(event.request))
+      .then(response => {
+        return response || fetch(event.request);
+      })
+  );
+});
+
+// Limpieza de cachés antiguas
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
   );
 });
